@@ -1,0 +1,5 @@
+email,domain
+user1@company.com,secure-portal.com
+admin@corp.net,admin.corp.net
+test@example.org,api.example.org
+support@service.io,app.service.io
