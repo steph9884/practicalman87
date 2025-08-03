@@ -1,0 +1,61 @@
+{
+  "default_config": {
+    "domains": ["example.com", "mysite.org", "secure-portal.net"],
+    "email_obfuscation_method": "base64",
+    "url_generation": {
+      "random_length_min": 8,
+      "random_length_max": 32,
+      "use_timestamps": true,
+      "use_hash_tokens": true
+    },
+    "security": {
+      "add_decoy_params": true,
+      "randomize_param_order": true,
+      "use_fragments": true
+    }
+  },
+  
+  "high_security_config": {
+    "domains": ["secure-bank.com", "corporate-portal.net"],
+    "email_obfuscation_method": "base64",
+    "url_generation": {
+      "random_length_min": 16,
+      "random_length_max": 64,
+      "use_timestamps": true,
+      "use_hash_tokens": true,
+      "hash_algorithm": "sha512"
+    },
+    "security": {
+      "add_decoy_params": true,
+      "randomize_param_order": true,
+      "use_fragments": true,
+      "add_noise_parameters": true,
+      "obfuscate_paths": true
+    },
+    "templates": {
+      "banking_portal": "https://{domain}/secure/[[random_hex(20)]]/auth?session=[[random_string(40)]]&token=[[hash_token]]&ts=[[timestamp]]&user=[[base64_email]]&challenge=[[random_string(32)]]",
+      "admin_access": "https://{domain}/admin/[[random_uuid]]/panel?key=[[random_string(48)]]&sig=[[hash_token]]&nonce=[[random_hex(16)]]&expires=[[timestamp]]"
+    }
+  },
+  
+  "stealth_config": {
+    "domains": ["cdn.cloudflare.com", "assets.amazonaws.com", "static.googleapis.com"],
+    "email_obfuscation_method": "url_encode",
+    "url_generation": {
+      "random_length_min": 6,
+      "random_length_max": 16,
+      "use_timestamps": false,
+      "use_hash_tokens": false
+    },
+    "security": {
+      "add_decoy_params": false,
+      "randomize_param_order": false,
+      "use_fragments": false,
+      "mimic_legitimate_services": true
+    },
+    "templates": {
+      "cdn_style": "https://{domain}/[[random_hex(8)]]/[[random_string(12)]].js?v=[[random_digits(4)]]&cache=[[random_string(8)]]",
+      "api_style": "https://{domain}/api/v[[random_digits(1)]]/[[random_string(8)]]?callback=[[random_string(10)]]&_=[[timestamp]]"
+    }
+  }
+}

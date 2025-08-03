@@ -1,0 +1,28 @@
+{
+  "entries": [
+    {
+      "email": "user1@company.com",
+      "domain": "secure-portal.com",
+      "template": "webmail_style",
+      "count": 3
+    },
+    {
+      "email": "admin@corp.net",
+      "domain": "admin.corp.net",
+      "template": "admin_portal",
+      "count": 2,
+      "custom_vars": {
+        "special_token": "abc123def456"
+      }
+    },
+    {
+      "email": "api@service.com",
+      "domain": "api.service.com",
+      "template": "https://{domain}/custom/[[random_string(12)]]?user=[[base64_email]]&key=[[special_token]]",
+      "count": 1,
+      "custom_vars": {
+        "special_token": "xyz789"
+      }
+    }
+  ]
+}
